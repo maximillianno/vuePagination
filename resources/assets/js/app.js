@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 // Vue.component('pages-component', require('./components/PagesComponent.vue'));
 Vue.component('topics-component', require('./components/TopicsComponent.vue'));
+Vue.component('users-component', require('./components/UsersComponent.vue'));
 // Vue.component('topic-component', require('./components/TopicComponent.vue'));
 
 const app = new Vue({

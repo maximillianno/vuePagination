@@ -14008,6 +14008,7 @@ window.Vue = __webpack_require__(38);
 
 // Vue.component('pages-component', require('./components/PagesComponent.vue'));
 Vue.component('topics-component', __webpack_require__(41));
+Vue.component('users-component', __webpack_require__(59));
 // Vue.component('topic-component', require('./components/TopicComponent.vue'));
 
 var app = new Vue({
@@ -48135,6 +48136,194 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(60)
+/* template */
+var __vue_template__ = __webpack_require__(61)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\UsersComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6847888c", Component.options)
+  } else {
+    hotAPI.reload("data-v-6847888c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PagesComponent__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PagesComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PagesComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__events_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__events_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__events_js__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            page: 1,
+            users: [],
+            meta: { 'last_page': 1 },
+            links: ['prev']
+        };
+    },
+
+    methods: {
+        getUsers: function getUsers(page) {
+            var _this = this;
+
+            axios.get('api/users?page=' + page).then(function (response) {
+                _this.users = response.data.data;
+                _this.meta = response.data.meta;
+                _this.links = response.data.links;
+                console.log(_this.users);
+                console.log(_this.meta);
+                console.log(_this.links);
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.getUsers(this.page);
+        __WEBPACK_IMPORTED_MODULE_1__events_js___default.a.$on('switched-page', this.getUsers);
+    },
+
+    components: {
+        PagesComponent: __WEBPACK_IMPORTED_MODULE_0__PagesComponent___default.a
+    }
+});
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Users")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _vm.meta && _vm.links && _vm.users.length
+                ? _c("pages-component", {
+                    attrs: { meta: _vm.meta, links: _vm.links }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.users, function(user) {
+                return _c("div", { key: user.id, staticClass: "media user" }, [
+                  _c("div", { staticClass: "media-left mr-3" }, [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _c("img", {
+                        staticClass: "media-object",
+                        attrs: { src: user.avatar, alt: "" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "media-body" }, [
+                    _c("h5", { staticClass: "media-heading" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _vm._v(_vm._s(user.name))
+                      ])
+                    ])
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6847888c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
