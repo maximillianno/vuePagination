@@ -19,11 +19,11 @@ class TopicController extends Controller
     public function index()
     {
         //
-        // $topics = Topic::latestFirst()->paginate(7);
+        // $topics = Topic::latestFirst()->paginate(4);
         // $topicsCollection = $topics->getCollection();
         // $topicUsers = Topic::with('user')->get();
         
-        $topicsLaraPaginate = Topic::latestFirst()->with('user')->paginate(7);
+        $topicsLaraPaginate = Topic::latestFirst()->with('user')->paginate(4);
         
         return TopicResource::collection($topicsLaraPaginate);
 

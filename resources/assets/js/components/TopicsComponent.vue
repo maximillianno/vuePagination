@@ -6,8 +6,9 @@
                     <div class="card-header">Topics</div>
 
                     <div class="card-body">
-                        <pages-component v-if="meta && links && topics.length" :meta="meta" :links="links"></pages-component>
+                        <pages-component v-if="meta && links && topics.length" :for="compName" :meta="meta" :links="links"></pages-component>
                         <topic-component v-for="topic in topics" :key="topic.id" v-bind:topic="topic"></topic-component>
+                        <pages-component v-if="meta && links && topics.length" :for="compName" :meta="meta" :links="links"></pages-component>
                     </div>
                 </div>
             </div>
@@ -23,6 +24,7 @@
     export default {
         data(){
             return {
+                compName: "topicsc",
                 page: 1,
                 topics: [],
                 meta: {'last_page': 1},
@@ -47,7 +49,7 @@
         },
         mounted() {
             this.getTopics(this.page)
-            eventHub.$on('switched-page', this.getTopics)
+            eventHub.$on('topicsc.switched-page', this.getTopics)
         },
         components:{
             TopicComponent, PagesComponent

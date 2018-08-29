@@ -24,13 +24,16 @@
 <script>
     import  eventHub  from "../events.js";
     export default {
-        props: ['meta', 'links'],
+        props: {'meta': Object, 'links':Object, 'for': {
+            type:String,
+            default: 'default'
+        }},
         mounted() {
             console.log('Component mounted.')
         },
         methods:{
             switchPage(page){
-                eventHub.$emit('switched-page', page)
+                eventHub.$emit(this.for+'.switched-page', page)
 
             }
         }

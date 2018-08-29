@@ -47343,6 +47343,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -47351,6 +47352,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            compName: "topicsc",
             page: 1,
             topics: [],
             meta: { 'last_page': 1 },
@@ -47374,7 +47376,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.getTopics(this.page);
-        __WEBPACK_IMPORTED_MODULE_2__events_js___default.a.$on('switched-page', this.getTopics);
+        __WEBPACK_IMPORTED_MODULE_2__events_js___default.a.$on('topicsc.switched-page', this.getTopics);
     },
 
     components: {
@@ -47961,14 +47963,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['meta', 'links'],
+    props: { 'meta': Object, 'links': Object, 'for': {
+            type: String,
+            default: 'default'
+        } },
     mounted: function mounted() {
         console.log('Component mounted.');
     },
 
     methods: {
         switchPage: function switchPage(page) {
-            __WEBPACK_IMPORTED_MODULE_0__events_js___default.a.$emit('switched-page', page);
+            __WEBPACK_IMPORTED_MODULE_0__events_js___default.a.$emit(this.for + '.switched-page', page);
         }
     }
 });
@@ -48103,7 +48108,11 @@ var render = function() {
             [
               _vm.meta && _vm.links && _vm.topics.length
                 ? _c("pages-component", {
-                    attrs: { meta: _vm.meta, links: _vm.links }
+                    attrs: {
+                      for: _vm.compName,
+                      meta: _vm.meta,
+                      links: _vm.links
+                    }
                   })
                 : _vm._e(),
               _vm._v(" "),
@@ -48112,7 +48121,17 @@ var render = function() {
                   key: topic.id,
                   attrs: { topic: topic }
                 })
-              })
+              }),
+              _vm._v(" "),
+              _vm.meta && _vm.links && _vm.topics.length
+                ? _c("pages-component", {
+                    attrs: {
+                      for: _vm.compName,
+                      meta: _vm.meta,
+                      links: _vm.links
+                    }
+                  })
+                : _vm._e()
             ],
             2
           )
@@ -48232,6 +48251,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            compName: "usersc",
             page: 1,
             users: [],
             meta: { 'last_page': 1 },
@@ -48243,7 +48263,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers(page) {
             var _this = this;
 
-            axios.get('api/users?page=' + page).then(function (response) {
+            axios.get("api/users?page=" + page).then(function (response) {
                 _this.users = response.data.data;
                 _this.meta = response.data.meta;
                 _this.links = response.data.links;
@@ -48255,7 +48275,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.getUsers(this.page);
-        __WEBPACK_IMPORTED_MODULE_1__events_js___default.a.$on('switched-page', this.getUsers);
+        __WEBPACK_IMPORTED_MODULE_1__events_js___default.a.$on('usersc.switched-page', this.getUsers);
     },
 
     components: {
@@ -48283,7 +48303,11 @@ var render = function() {
             [
               _vm.meta && _vm.links && _vm.users.length
                 ? _c("pages-component", {
-                    attrs: { meta: _vm.meta, links: _vm.links }
+                    attrs: {
+                      for: _vm.compName,
+                      meta: _vm.meta,
+                      links: _vm.links
+                    }
                   })
                 : _vm._e(),
               _vm._v(" "),

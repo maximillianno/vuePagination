@@ -6,7 +6,7 @@
                     <div class="card-header">Users</div>
 
                     <div class="card-body">
-                        <pages-component v-if="meta && links && users.length" :meta="meta" :links="links"></pages-component>
+                        <pages-component v-if="meta && links && users.length" :for="compName" :meta="meta" :links="links"></pages-component>
                         <div class="media user" v-for="user in users" :key="user.id">
                             <div class="media-left mr-3">
                                 <a href="#"><img class="media-object"  v-bind:src="user.avatar" alt=""></a>
@@ -33,6 +33,7 @@
     export default {
         data(){
             return {
+                compName: "usersc",
                 page: 1,
                 users: [],
                 meta: {'last_page': 1},
@@ -57,7 +58,7 @@
         },
         mounted() {
             this.getUsers(this.page)
-            eventHub.$on('switched-page', this.getUsers)
+            eventHub.$on('usersc.switched-page', this.getUsers)
         },
         components:{
             PagesComponent
